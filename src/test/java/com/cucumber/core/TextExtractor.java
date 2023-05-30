@@ -7,17 +7,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextExtractor {
-    public static String getCurrency(WebElement e) {
-        String currencyElement = e.findElement(By.tagName("i")).getText();
+    /**
+     * This function returns prices list of all subscriptions
+     *
+     * @param currencyWebElement webElement of price
+     * @return currency string
+     */
+    public static String getCurrency(WebElement currencyWebElement) {
+        String currencyElement = currencyWebElement.findElement(By.tagName("i")).getText();
         return currencyElement.replace("/month", "");
     }
 
-    public static List<Double> getPricesList(List<WebElement> elementList) {
+    /**
+     * This function returns prices list of all subscriptions
+     *
+     * @param pricesWebElementList a list of prices web elements
+     * @return a list of prices of subscription
+     */
+    public static List<Double> getPricesList(List<WebElement> pricesWebElementList) {
         List<Double> priceslist = new ArrayList<>();
-        for (WebElement e : elementList) {
-            String price = e.findElement(By.tagName("b")).getText();
+        for (WebElement priceWebELement : pricesWebElementList) {
+            String price = priceWebELement.findElement(By.tagName("b")).getText();
             priceslist.add(Double.valueOf(price));
         }
         return priceslist;
     }
+
 }
